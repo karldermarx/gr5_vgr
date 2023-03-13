@@ -1,0 +1,48 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo:
+{ 
+typeName: 'Rental Operation Details',
+typeNamePlural: 'Rentals',
+title.value: 'VideogameTitle',
+description.value: 'RentalReturnDate'
+}
+
+@UI.presentationVariant: [{sortOrder: [{by:'RentalReturnDate', direction: #DESC }] }]
+annotate view ZGR5_C_RENTOP_CUSTOMER
+    with 
+{
+    @UI.facet: 
+[   {position: 10, type: #IDENTIFICATION_REFERENCE, label: 'Rental Operation Details' }] 
+    
+    @UI.lineItem: [{position: 10 }]
+    @UI.identification: [{position:10 }]
+    RentalId;
+    
+    @UI.lineItem: [{position: 20, label: 'Videogame Title' }]
+    @UI.identification: [{position:20 }]
+    VideogameTitle;
+    
+    @UI.lineItem: [{position: 30, label: 'Customer Name' }]
+    @UI.identification: [{position:30 }]
+    CustomerName;
+    
+    @UI.lineItem: [{position: 40 }]
+    @UI.identification: [{position:40 }]
+    RentalStartDate;
+    
+    @UI.lineItem: [{position: 50, criticality: 'RentalDateCriticality', criticalityRepresentation: #WITHOUT_ICON   }]
+    @UI.identification: [{position:50 }]
+    RentalReturnDate;
+    
+    @UI.lineItem: [{position: 60, criticality: 'RentalOperationStatusCrit', criticalityRepresentation: #WITHOUT_ICON }]
+    @UI.identification: [{position: 60 }]
+    RentalOperationStatus;
+    
+    @UI.lineItem: [{position: 70 }]
+    @UI.identification: [{position:70 }]
+    RentalFee;
+    
+    @UI.lineItem: [{position: 80 }]
+    @UI.identification: [{position: 80 }]
+    RentalRating;
+}

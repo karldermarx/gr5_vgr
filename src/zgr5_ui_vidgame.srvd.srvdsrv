@@ -1,0 +1,6 @@
+@EndUserText.label: 'Videogame UI'
+define service ZGR5_UI_VIDGAME {
+  expose ZGR5_C_VIDGAME;
+  expose ZGR5_C_RENTOP;
+  expose ZGR5_C_RENTOP_CUSTOMER;
+}

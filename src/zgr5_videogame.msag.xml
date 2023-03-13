@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>ZGR5_VIDEOGAME</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+    <STEXT>Videogame</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZGR5_VIDEOGAME</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>I am oppressed by &amp;1</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZGR5_VIDEOGAME</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>Rental Operation with ID &amp;1 already cancelled</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZGR5_VIDEOGAME</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>Rental Operation with ID &amp;1 cancelled successfully</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZGR5_VIDEOGAME</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>Invalid date: End date has to be after starting date</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZGR5_VIDEOGAME</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>Invalid rental fee: Rental fee has to be higher than 0</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZGR5_VIDEOGAME</ARBGB>
+     <MSGNR>006</MSGNR>
+     <TEXT>Videogame has already been returned</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZGR5_VIDEOGAME</ARBGB>
+     <MSGNR>007</MSGNR>
+     <TEXT>Invalid rental rating (&amp;1): Rating has to be between 0 or 10.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZGR5_VIDEOGAME</ARBGB>
+     <MSGNR>008</MSGNR>
+     <TEXT>Cannot create rental operation: Videogame is not available</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZGR5_VIDEOGAME</ARBGB>
+     <MSGNR>009</MSGNR>
+     <TEXT>Invalid or missing UUID: Please choose an UUID.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZGR5_VIDEOGAME</ARBGB>
+     <MSGNR>010</MSGNR>
+     <TEXT>Invalid or missing videogame title: Please set a videogame title.</TEXT>
+    </T100>
+   </T100>
+  </asx:values>
+ </asx:abap>
+</abapGit>

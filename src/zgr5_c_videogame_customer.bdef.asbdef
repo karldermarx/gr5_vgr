@@ -1,0 +1,23 @@
+projection;
+strict ( 1 );
+
+define behavior for ZGR5_C_VIDEOGAME_CUSTOMER //alias <alias_name>
+{
+  use create;
+  use update;
+  use delete;
+
+  use association _RentalOperation { create; }
+}
+
+define behavior for ZGR5_C_RENTOP_CUSTOMER //alias <alias_name>
+{
+  use update;
+
+  // max character 255 -> more field attributs mandatory
+  field (readonly) CukyField, CustomerFirstname, CustomerLastname, CustomerName;
+  field (readonly) CustomerUuid, RentalDateCriticality, RentalFee, RentalId, RentalOperationStatus, RentalOperationStatusCrit;
+  field (readonly) RentalOperationUuid, RentalReturnDate, RentalStartDate, VideogameTitle, VideogameUuid;
+
+  use association _Videogame;
+}

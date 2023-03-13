@@ -1,0 +1,60 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo:
+{
+  typeNamePlural: 'Videogames',
+  typeName: 'Videogame',
+  title.value: 'VideogameTitle',
+  description.value: 'SystemTitle'
+}
+annotate view ZGR5_C_VIDGAME with
+{
+  //Facets
+  @UI.facet: [
+   { position: 10, type: #IDENTIFICATION_REFERENCE, label: 'Videogame Details' },
+   {position: 20, type : #LINEITEM_REFERENCE, targetElement: '_RentalOperation' , label: 'RentalStatus' }]
+
+  //Fields
+  @UI.hidden: true
+  VideogameUuid;
+  
+  @UI.lineItem: [{position:10 }]
+  @UI.identification: [{position: 10 }]
+  VidgameId;
+
+  @UI.lineItem: [{ position: 20 }]
+  @UI.selectionField: [{ position: 10 }]
+  @UI.identification: [{ position: 20 }]
+  VideogameTitle;
+
+  @UI.lineItem: [{ position: 30 }]
+  @UI.selectionField: [{ position: 20 }]
+  @UI.identification: [{ position: 30 }]
+  VideogameGenre;
+
+  @UI.lineItem: [{ position: 40 }]
+  @UI.selectionField: [{ position: 30 }]
+  @UI.identification: [{ position: 40 }]
+  VideogameReleaseYear;
+
+  @UI.selectionField: [{ position: 40 }]
+  SystemTitle;
+  
+  @UI.lineItem: [{ position: 50, label: 'System Title'}]
+  @UI.identification: [{ position: 50 }]
+  SystemTitleDescription;
+
+  @UI.lineItem: [{ position: 60, criticality: 'AverageRatingSuccess', criticalityRepresentation: #WITHOUT_ICON }]
+  @UI.selectionField: [{ position: 50 }]
+  @UI.identification: [{ position: 60 }]
+  AverageRating;
+
+  @UI.lineItem: [{ position: 70, criticality: 'StatusCriticality', criticalityRepresentation: #WITH_ICON }]
+  @UI.identification: [{ position: 70 }]
+  RentalStatus;
+  
+  @UI.hidden: true
+  StatusCriticality;
+  
+  @UI.hidden: true
+  AverageRatingSuccess;
+}

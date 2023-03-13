@@ -1,0 +1,90 @@
+managed implementation in class zbp_gr5_i_vidgame unique;
+strict ( 1 );
+
+define behavior for ZGR5_I_VIDGAME //alias <alias_name>
+persistent table zgr5_vgr_vidgame
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  /*CUD-Methods*/
+  create;
+  update;
+  delete;
+  association _RentalOperation { create; }
+
+  /*Field Controls*/
+  field ( readonly, numbering : managed ) VideogameUuid;
+  field ( readonly ) VidgameId, AverageRating;
+  field ( mandatory ) RentalStatus, SystemTitle, VideogameGenre, VideogameReleaseYear, VideogameTitle;
+
+
+  /*Actions, Validations and Determinations*/
+  determination determineVidgameId on save { create; }
+
+  validation validateGameTitle on save { create; update; field VideoGameTitle; }
+
+
+
+  /*Mapping*/
+  mapping for zgr5_vgr_vidgame corresponding
+    {
+      RentalStatus         = rental_status;
+      SystemTitle          = system_title;
+      VideogameGenre       = videogame_genre;
+      VidgameId            = vidgame_id;
+      VideogameReleaseYear = videogame_release_year;
+      VideogameTitle       = videogame_title;
+      VideogameUuid        = videogame_uuid;
+    }
+ }
+
+define behavior for ZGR5_I_RENTOP //alias <alias_name>
+persistent table zgr5_vgr_rentop
+lock dependent by _Videogame
+authorization dependent by _Videogame
+//etag master <field_name>
+{
+
+  /*CUD-Methods*/
+  update;
+  delete;
+
+  /*Field Controls*/
+  field ( readonly, numbering : managed ) RentalOperationUuid;
+  field ( readonly ) RentalId, VideogameUuid, VideogameTitle, CustomerName, RentalFee, CukyField, RentalOperationStatus;
+  field ( mandatory )  CustomerUuid, RentalStartDate, RentalReturnDate;
+  association _Videogame;
+
+  /*Actions, Validations and Determinations*/
+  validation validateEndDate on save { create; update; field RentalReturnDate; }
+  validation validateRentalFee on save { create; update; field RentalFee; }
+  validation validateRating on save { create; update; field RentalRating;}
+  validation validateStatus on save { create; }
+  validation validateUUID on save { create; update; field CustomerUuid; }
+
+  determination determineRentalId on save { create; }
+  determination determineRentalFee on save { create; }
+  determination determineRentalStats on save { create; }
+  determination determineVidStatus on save { create; }
+
+
+  action cancel_rental_operation;
+
+
+  /*Mapping*/
+  mapping for zgr5_vgr_rentop corresponding
+    {
+      CukyField             = cuky_field;
+      CustomerUuid          = customer_uuid;
+      RentalFee             = rental_fee;
+      RentalId              = rental_id;
+      RentalOperationUuid   = rental_operation_uuid;
+      RentalReturnDate      = rental_return_date;
+      RentalStartDate       = rental_start_date;
+      RentalOperationStatus = rental_operation_status;
+      RentalRating          = rental_rating;
+      VideogameUuid         = videogame_uuid;
+
+    }
+ }
