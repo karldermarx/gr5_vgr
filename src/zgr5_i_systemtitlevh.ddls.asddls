@@ -16,6 +16,6 @@ define view entity ZGR5_I_SYSTEMTITLEVH as select from DDCDS_CUSTOMER_DOMAIN_VAL
     @ObjectModel.text.element: ['SystemTitle']
     value_low as SystemTitle,
     
-    @EndUserText: {label: 'System Title Text', quickInfo: 'System Title Text'}
+    @EndUserText: {label: 'System Title Text', quickInfo: 'System Title Description'}
     text as Statustext
 }

@@ -24,7 +24,7 @@ define root view entity ZGR5_I_VIDGAME
         else 'Unknown Status'
       end                          as RentalStatus,
 
-
+/*
       case system_title
         when 'PC'         then 'PC'
         when 'XBOX ONE'   then 'Xbox One'
@@ -35,6 +35,7 @@ define root view entity ZGR5_I_VIDGAME
         when 'NSW'        then 'Nintendo Switch'
         else 'Unknown Plattform'
        end                         as SystemTitleDescription,
+*/
        
 
       /* Transient Data */

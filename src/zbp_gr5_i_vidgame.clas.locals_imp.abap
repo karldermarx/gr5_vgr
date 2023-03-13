@@ -25,6 +25,10 @@ CLASS lhc_zgr5_i_rentop DEFINITION INHERITING FROM cl_abap_behavior_handler.
       IMPORTING keys FOR ZGR5_I_RENTOP~determineVidStatus.
     METHODS validateUUID FOR VALIDATE ON SAVE
       IMPORTING keys FOR ZGR5_I_RENTOP~validateUUID.
+    METHODS validateStartDateNull FOR VALIDATE ON SAVE
+      IMPORTING keys FOR ZGR5_I_RENTOP~validateStartDateNull.
+    METHODS validateEndDateNull FOR VALIDATE ON SAVE
+      IMPORTING keys FOR ZGR5_I_RENTOP~validateEndDateNull.
 
 
 ENDCLASS.
@@ -266,6 +270,46 @@ CLASS lhc_zgr5_i_rentop IMPLEMENTATION.
 
     ENDLOOP.
     ENDMETHOD.
+  METHOD validateStartDateNull.
+  "Read the data
+  Read ENTITY IN LOCAL MODE zgr5_i_rentop
+        Fields ( RentalStartDate )
+        WITH CORRESPONDING #( keys )
+        RESULT DATA(rentops).
+
+    "Sequential processing of the data
+    LOOP AT rentops INTO DATA(rentop).
+        if rentop-RentalStartDate IS INITIAL.
+            DATA(message) = NEW zcm_gr5_videogame(
+                            severity = if_abap_behv_message=>severity-error
+                            textid   = zcm_gr5_videogame=>invalid_or_missing_rent_start
+                             ).
+            APPEND message TO reported-%other.
+        endif.
+
+    ENDLOOP.
+  ENDMETHOD.
+
+  METHOD validateEndDateNull.
+  "Read the data
+  Read ENTITY IN LOCAL MODE zgr5_i_rentop
+        Fields ( RentalReturnDate )
+        WITH CORRESPONDING #( keys )
+        RESULT DATA(rentops).
+
+    "Sequential processing of the data
+    LOOP AT rentops INTO DATA(rentop).
+        if rentop-RentalReturnDate IS INITIAL.
+            DATA(message) = NEW zcm_gr5_videogame(
+                            severity = if_abap_behv_message=>severity-error
+                            textid   = zcm_gr5_videogame=>invalid_or_missing_rent_end
+                             ).
+            APPEND message TO reported-%other.
+        endif.
+
+    ENDLOOP.
+  ENDMETHOD.
+
 ENDCLASS.
 
 CLASS lhc_ZGR5_I_VIDGAME DEFINITION INHERITING FROM cl_abap_behavior_handler.
@@ -277,6 +321,14 @@ CLASS lhc_ZGR5_I_VIDGAME DEFINITION INHERITING FROM cl_abap_behavior_handler.
       IMPORTING keys FOR zgr5_i_vidgame~determinevidgameid.
     METHODS validategametitle FOR VALIDATE ON SAVE
       IMPORTING keys FOR zgr5_i_vidgame~validategametitle.
+    METHODS validategamegenre FOR VALIDATE ON SAVE
+      IMPORTING keys FOR zgr5_i_vidgame~validategamegenre.
+    METHODS validatereleaseyear FOR VALIDATE ON SAVE
+      IMPORTING keys FOR zgr5_i_vidgame~validatereleaseyear.
+    METHODS validatesystemtitle FOR VALIDATE ON SAVE
+      IMPORTING keys FOR zgr5_i_vidgame~validatesystemtitle.
+    METHODS validaterentalstatus FOR VALIDATE ON SAVE
+      IMPORTING keys FOR zgr5_i_vidgame~validaterentalstatus.
 
 
 ENDCLASS.
@@ -329,5 +381,85 @@ CLASS lhc_ZGR5_I_VIDGAME IMPLEMENTATION.
 
     ENDLOOP.
     ENDMETHOD.
+
+  METHOD validateGameGenre.
+  "Read the data
+  Read ENTITY IN LOCAL MODE zgr5_i_vidgame
+        Fields ( VideogameGenre )
+        WITH CORRESPONDING #( keys )
+        RESULT DATA(vidgames).
+
+    "Sequential processing of the data
+    LOOP AT vidgames INTO DATA(vidgame).
+        if vidgame-VideogameGenre IS INITIAL.
+            DATA(message) = NEW zcm_gr5_videogame(
+                            severity = if_abap_behv_message=>severity-error
+                            textid   = zcm_gr5_videogame=>invalid_or_missing_game_genre
+                             ).
+            APPEND message TO reported-%other.
+        endif.
+
+    ENDLOOP.
+  ENDMETHOD.
+
+  METHOD validateReleaseYear.
+  "Read the data
+  Read ENTITY IN LOCAL MODE zgr5_i_vidgame
+        Fields ( VideogameReleaseYear )
+        WITH CORRESPONDING #( keys )
+        RESULT DATA(vidgames).
+
+    "Sequential processing of the data
+    LOOP AT vidgames INTO DATA(vidgame).
+        if vidgame-VideogameReleaseYear IS INITIAL.
+            DATA(message) = NEW zcm_gr5_videogame(
+                            severity = if_abap_behv_message=>severity-error
+                            textid   = zcm_gr5_videogame=>invalid_or_missing_rel_year
+                             ).
+            APPEND message TO reported-%other.
+        endif.
+
+    ENDLOOP.
+  ENDMETHOD.
+
+  METHOD validateSystemTitle.
+  "Read the data
+  Read ENTITY IN LOCAL MODE zgr5_i_vidgame
+        Fields ( SystemTitle )
+        WITH CORRESPONDING #( keys )
+        RESULT DATA(vidgames).
+
+    "Sequential processing of the data
+    LOOP AT vidgames INTO DATA(vidgame).
+        if vidgame-SystemTitle IS INITIAL.
+            DATA(message) = NEW zcm_gr5_videogame(
+                            severity = if_abap_behv_message=>severity-error
+                            textid   = zcm_gr5_videogame=>invalid_or_missing_sys_title
+                             ).
+            APPEND message TO reported-%other.
+        endif.
+
+    ENDLOOP.
+  ENDMETHOD.
+
+  METHOD validateRentalStatus.
+  "Read the data
+  Read ENTITY IN LOCAL MODE zgr5_i_vidgame
+        Fields ( RentalStatus )
+        WITH CORRESPONDING #( keys )
+        RESULT DATA(vidgames).
+
+    "Sequential processing of the data
+    LOOP AT vidgames INTO DATA(vidgame).
+        if vidgame-RentalStatus IS INITIAL.
+            DATA(message) = NEW zcm_gr5_videogame(
+                            severity = if_abap_behv_message=>severity-error
+                            textid   = zcm_gr5_videogame=>invalid_or_missing_rent_status
+                             ).
+            APPEND message TO reported-%other.
+        endif.
+
+    ENDLOOP.
+  ENDMETHOD.
 
 ENDCLASS.

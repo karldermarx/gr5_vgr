@@ -68,6 +68,42 @@
      <MSGNR>010</MSGNR>
      <TEXT>Invalid or missing videogame title: Please set a videogame title.</TEXT>
     </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZGR5_VIDEOGAME</ARBGB>
+     <MSGNR>011</MSGNR>
+     <TEXT>Invalid or missing videogame genre: Please set a videogame genre.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZGR5_VIDEOGAME</ARBGB>
+     <MSGNR>012</MSGNR>
+     <TEXT>Invalid or missing videogame release year: Please set a release year.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZGR5_VIDEOGAME</ARBGB>
+     <MSGNR>013</MSGNR>
+     <TEXT>Invalid or missing videogame system title: Please set a system title.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZGR5_VIDEOGAME</ARBGB>
+     <MSGNR>014</MSGNR>
+     <TEXT>Invalid or missing rental status: Please set a rental status.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZGR5_VIDEOGAME</ARBGB>
+     <MSGNR>015</MSGNR>
+     <TEXT>Invalid rental start date: Please set a valid rental start date.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZGR5_VIDEOGAME</ARBGB>
+     <MSGNR>016</MSGNR>
+     <TEXT>Invalid rental end date: Please set a valid rental end date.</TEXT>
+    </T100>
    </T100>
   </asx:values>
  </asx:abap>

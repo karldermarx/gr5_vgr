@@ -117,12 +117,62 @@ CLASS zcm_gr5_videogame DEFINITION
       CONSTANTS:
       BEGIN OF invalid_or_missing_game_genre,
         msgid TYPE symsgid VALUE 'ZGR5_VIDEOGAME',
-        msgno TYPE symsgno VALUE '010',
+        msgno TYPE symsgno VALUE '011',
         attr1 TYPE scx_attrname VALUE '',
         attr2 TYPE scx_attrname VALUE '',
         attr3 TYPE scx_attrname VALUE '',
         attr4 TYPE scx_attrname VALUE '',
       END OF invalid_or_missing_game_genre.
+
+      CONSTANTS:
+      BEGIN OF invalid_or_missing_rel_year,
+        msgid TYPE symsgid VALUE 'ZGR5_VIDEOGAME',
+        msgno TYPE symsgno VALUE '012',
+        attr1 TYPE scx_attrname VALUE '',
+        attr2 TYPE scx_attrname VALUE '',
+        attr3 TYPE scx_attrname VALUE '',
+        attr4 TYPE scx_attrname VALUE '',
+      END OF invalid_or_missing_rel_year.
+
+      CONSTANTS:
+      BEGIN OF invalid_or_missing_sys_title,
+        msgid TYPE symsgid VALUE 'ZGR5_VIDEOGAME',
+        msgno TYPE symsgno VALUE '013',
+        attr1 TYPE scx_attrname VALUE '',
+        attr2 TYPE scx_attrname VALUE '',
+        attr3 TYPE scx_attrname VALUE '',
+        attr4 TYPE scx_attrname VALUE '',
+      END OF invalid_or_missing_sys_title.
+
+      CONSTANTS:
+      BEGIN OF invalid_or_missing_rent_status,
+        msgid TYPE symsgid VALUE 'ZGR5_VIDEOGAME',
+        msgno TYPE symsgno VALUE '014',
+        attr1 TYPE scx_attrname VALUE '',
+        attr2 TYPE scx_attrname VALUE '',
+        attr3 TYPE scx_attrname VALUE '',
+        attr4 TYPE scx_attrname VALUE '',
+      END OF invalid_or_missing_rent_status.
+
+      CONSTANTS:
+      BEGIN OF invalid_or_missing_rent_start,
+        msgid TYPE symsgid VALUE 'ZGR5_VIDEOGAME',
+        msgno TYPE symsgno VALUE '015',
+        attr1 TYPE scx_attrname VALUE '',
+        attr2 TYPE scx_attrname VALUE '',
+        attr3 TYPE scx_attrname VALUE '',
+        attr4 TYPE scx_attrname VALUE '',
+      END OF invalid_or_missing_rent_start.
+
+      CONSTANTS:
+      BEGIN OF invalid_or_missing_rent_end,
+        msgid TYPE symsgid VALUE 'ZGR5_VIDEOGAME',
+        msgno TYPE symsgno VALUE '016',
+        attr1 TYPE scx_attrname VALUE '',
+        attr2 TYPE scx_attrname VALUE '',
+        attr3 TYPE scx_attrname VALUE '',
+        attr4 TYPE scx_attrname VALUE '',
+      END OF invalid_or_missing_rent_end.
 
     "Define Attributs
     DATA user TYPE ty_user.

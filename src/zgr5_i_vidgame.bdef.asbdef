@@ -23,19 +23,22 @@ authorization master ( instance )
   determination determineVidgameId on save { create; }
 
   validation validateGameTitle on save { create; update; field VideoGameTitle; }
-
+  validation validateGameGenre on save { create; update; field VideoGameGenre; }
+  validation validateReleaseYear on save { create; update; field VideoGameReleaseYear; }
+  validation validateSystemTitle on save { create; update; field SystemTitle; }
+  validation validateRentalStatus on save { create; update; field RentalStatus; }
 
 
   /*Mapping*/
   mapping for zgr5_vgr_vidgame corresponding
     {
-      RentalStatus         = rental_status;
-      SystemTitle          = system_title;
-      VideogameGenre       = videogame_genre;
-      VidgameId            = vidgame_id;
-      VideogameReleaseYear = videogame_release_year;
-      VideogameTitle       = videogame_title;
-      VideogameUuid        = videogame_uuid;
+      RentalStatus                    = rental_status;
+      SystemTitle                     = system_title;
+      VideogameGenre                  = videogame_genre;
+      VidgameId                       = vidgame_id;
+      VideogameReleaseYear            = videogame_release_year;
+      VideogameTitle                  = videogame_title;
+      VideogameUuid                   = videogame_uuid;
     }
  }
 
@@ -62,6 +65,8 @@ authorization dependent by _Videogame
   validation validateRating on save { create; update; field RentalRating;}
   validation validateStatus on save { create; }
   validation validateUUID on save { create; update; field CustomerUuid; }
+  validation validateStartDateNull on save { create; update; field RentalStartDate; }
+  validation validateEndDateNull on save { create; update; field RentalReturnDate; }
 
   determination determineRentalId on save { create; }
   determination determineRentalFee on save { create; }

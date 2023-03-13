@@ -16,9 +16,6 @@ define root view entity ZGR5_C_VIDGAME
       @Consumption.valueHelpDefinition: [{ entity: { name: 'ZGR5_I_SYSTEMTITLEVH', element: 'SystemTitle' } }]
       SystemTitle,
       
-      @EndUserText.label: 'System Title'
-      SystemTitleDescription,
-      
       VideogameGenre,
       VideogameReleaseYear,
       

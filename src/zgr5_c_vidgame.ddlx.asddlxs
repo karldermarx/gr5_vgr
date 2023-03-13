@@ -36,13 +36,11 @@ annotate view ZGR5_C_VIDGAME with
   @UI.identification: [{ position: 40 }]
   VideogameReleaseYear;
 
+  @UI.lineItem: [{ position: 50, label: 'System Title'}]
+  @UI.identification: [{ position: 50 }]
   @UI.selectionField: [{ position: 40 }]
   SystemTitle;
   
-  @UI.lineItem: [{ position: 50, label: 'System Title'}]
-  @UI.identification: [{ position: 50 }]
-  SystemTitleDescription;
-
   @UI.lineItem: [{ position: 60, criticality: 'AverageRatingSuccess', criticalityRepresentation: #WITHOUT_ICON }]
   @UI.selectionField: [{ position: 50 }]
   @UI.identification: [{ position: 60 }]

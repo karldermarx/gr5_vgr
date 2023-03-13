@@ -7,7 +7,6 @@ define view entity ZGR5_I_VIDEOGAMEVH
   @ObjectModel.text.element: ['VideogameTitle']
   @UI.hidden: true
   key videogame_uuid         as VideogameUuid,
-     /* videogame_id           as VideogameId,*/
       vidgame_id             as VidgameId,
       videogame_title        as VideogameTitle,
       system_title           as SystemTitle,
