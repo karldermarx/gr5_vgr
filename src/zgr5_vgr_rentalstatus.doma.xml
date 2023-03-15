@@ -33,7 +33,7 @@
      <VALPOS>0003</VALPOS>
      <DDLANGUAGE>E</DDLANGUAGE>
      <DOMVALUE_L>N</DOMVALUE_L>
-     <DDTEXT>Not in stock</DDTEXT>
+     <DDTEXT>Out of stock</DDTEXT>
     </DD07V>
    </DD07V_TAB>
   </asx:values>

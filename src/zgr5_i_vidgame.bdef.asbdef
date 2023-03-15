@@ -26,6 +26,8 @@ authorization master ( instance )
   validation validateGameGenre on save { create; update; field VideoGameGenre; }
   validation validateReleaseYear on save { create; update; field VideoGameReleaseYear; }
   validation validateSystemTitle on save { create; update; field SystemTitle; }
+
+  // Videogame can only be available or not in stock
   validation validateRentalStatus on save { create; update; field RentalStatus; }
 
 
@@ -55,22 +57,42 @@ authorization dependent by _Videogame
 
   /*Field Controls*/
   field ( readonly, numbering : managed ) RentalOperationUuid;
-  field ( readonly ) RentalId, VideogameUuid, VideogameTitle, CustomerName, RentalFee, CukyField, RentalOperationStatus;
-  field ( mandatory )  CustomerUuid, RentalStartDate, RentalReturnDate;
+  field ( readonly )  RentalStartDate, RentalId, VideogameUuid, VideogameTitle, CustomerName, RentalFee, CukyField, RentalOperationStatus;
+  field ( mandatory )  CustomerUuid, RentalReturnDate;
   association _Videogame;
 
   /*Actions, Validations and Determinations*/
+
+  // enddate < startdate
   validation validateEndDate on save { create; update; field RentalReturnDate; }
-  validation validateRentalFee on save { create; update; field RentalFee; }
+
+  // validation validateRentalFee on save { create; update; field RentalFee; }
+
+  // Rating Between 0 AND 10
   validation validateRating on save { create; update; field RentalRating;}
+
+  // Videogame = Available
   validation validateStatus on save { create; }
+
   validation validateUUID on save { create; update; field CustomerUuid; }
-  validation validateStartDateNull on save { create; update; field RentalStartDate; }
+
+  // EndDate != Null
   validation validateEndDateNull on save { create; update; field RentalReturnDate; }
 
+
+  // Date = Systemdate
+  determination determineRentalStartDate on save {create;}
+
+  // new RentOp -> ID = ID + 1
   determination determineRentalId on save { create; }
+
+  // new RentOp -> Calculate RentalFee
   determination determineRentalFee on save { create; }
-  determination determineRentalStats on save { create; }
+
+  // new RentOp -> RentalOperationStatus = BORROWED
+  determination determineRentalOperationStatus on save { create; }
+
+  // new RentOp -> Videogame to Booked (B)
   determination determineVidStatus on save { create; }
 
 

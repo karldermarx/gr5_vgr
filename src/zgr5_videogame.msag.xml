@@ -78,7 +78,7 @@
      <SPRSL>E</SPRSL>
      <ARBGB>ZGR5_VIDEOGAME</ARBGB>
      <MSGNR>012</MSGNR>
-     <TEXT>Invalid or missing videogame release year: Please set a release year.</TEXT>
+     <TEXT>Invalid or missing release year: Please set a release year at least 1939.</TEXT>
     </T100>
     <T100>
      <SPRSL>E</SPRSL>
@@ -90,7 +90,7 @@
      <SPRSL>E</SPRSL>
      <ARBGB>ZGR5_VIDEOGAME</ARBGB>
      <MSGNR>014</MSGNR>
-     <TEXT>Invalid or missing rental status: Please set a rental status.</TEXT>
+     <TEXT>Invalid or missing rental status: Please set valid rental status</TEXT>
     </T100>
     <T100>
      <SPRSL>E</SPRSL>
@@ -103,6 +103,12 @@
      <ARBGB>ZGR5_VIDEOGAME</ARBGB>
      <MSGNR>016</MSGNR>
      <TEXT>Invalid rental end date: Please set a valid rental end date.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZGR5_VIDEOGAME</ARBGB>
+     <MSGNR>017</MSGNR>
+     <TEXT>Cannot delete Videogame: Is still borrowed</TEXT>
     </T100>
    </T100>
   </asx:values>

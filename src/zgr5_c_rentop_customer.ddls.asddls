@@ -27,6 +27,7 @@ define view entity ZGR5_C_RENTOP_CUSTOMER
     @EndUserText.label: 'Customer Name'
     CustomerName,
     VideogameTitle,
+    
     /* Associations */
     _Videogame : redirected to parent ZGR5_C_VIDEOGAME_CUSTOMER
 }

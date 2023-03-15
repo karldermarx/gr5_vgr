@@ -1,6 +1,7 @@
 @EndUserText.label: 'Projection View: Rental Operation'
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @Metadata.allowExtensions: true
+
 define view entity ZGR5_C_RENTOP
   as projection on ZGR5_I_RENTOP
 {
@@ -28,9 +29,6 @@ define view entity ZGR5_C_RENTOP
       RentalOperationStatus,
       RentalOperationStatusCrit,
 
-
-
-      
       /* Associations */
       _Videogame : redirected to parent ZGR5_C_VIDGAME
 }

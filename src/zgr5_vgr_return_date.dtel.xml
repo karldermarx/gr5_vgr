@@ -11,10 +11,10 @@
     <SCRLEN2>20</SCRLEN2>
     <SCRLEN3>40</SCRLEN3>
     <DDTEXT>Rental return date</DDTEXT>
-    <REPTEXT>Rental return date</REPTEXT>
+    <REPTEXT>Rental Return Rate</REPTEXT>
     <SCRTEXT_S>rrDate</SCRTEXT_S>
-    <SCRTEXT_M>Rental return date</SCRTEXT_M>
-    <SCRTEXT_L>Rental return date</SCRTEXT_L>
+    <SCRTEXT_M>Rental Return Rate</SCRTEXT_M>
+    <SCRTEXT_L>Rental Return Rate</SCRTEXT_L>
     <DTELMASTER>E</DTELMASTER>
     <REFKIND>D</REFKIND>
     <ABAP_LANGUAGE_VERSION>5</ABAP_LANGUAGE_VERSION>

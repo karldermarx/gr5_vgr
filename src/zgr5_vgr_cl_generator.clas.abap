@@ -219,6 +219,16 @@ CLASS zgr5_vgr_cl_generator IMPLEMENTATION.
     customer-customer_accession_date = '20230105'.
     APPEND customer TO customers.
 
+    "Struktur 6-1-3
+    "Struktur 6 als Customer
+    customer-client = sy-mandt.
+    customer-customer_uuid = cl_system_uuid=>create_uuid_x16_static( ).
+    customer-customer_id = '0000006'.
+    customer-customer_firstname = 'Grinch'.
+    customer-customer_lastname = 'Fahrsozial'.
+    customer-customer_accession_date = '202303013'.
+    APPEND customer TO customers.
+
     "Struktur 6-2-2
     "Struktur 6 als Rental Operation
     rental-client = sy-mandt.

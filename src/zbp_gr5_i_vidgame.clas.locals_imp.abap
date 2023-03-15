@@ -9,26 +9,27 @@ CLASS lhc_zgr5_i_rentop DEFINITION INHERITING FROM cl_abap_behavior_handler.
       IMPORTING keys FOR ACTION ZGR5_I_RENTOP~cancel_rental_operation.
     METHODS validateEndDate FOR VALIDATE ON SAVE
       IMPORTING keys FOR ZGR5_I_RENTOP~validateEndDate.
-    METHODS validateRentalFee FOR VALIDATE ON SAVE
-      IMPORTING keys FOR ZGR5_I_RENTOP~validateRentalFee.
+*    METHODS validateRentalFee FOR VALIDATE ON SAVE
+*      IMPORTING keys FOR ZGR5_I_RENTOP~validateRentalFee.
     METHODS determineRentalId FOR DETERMINE ON SAVE
       IMPORTING keys FOR ZGR5_I_RENTOP~determineRentalId.
+    METHODS determineRentalStartDate FOR DETERMINE ON SAVE
+      IMPORTING keys FOR ZGR5_I_RENTOP~determineRentalStartDate.
       METHODS determineRentalFee FOR DETERMINE ON SAVE
       IMPORTING keys FOR ZGR5_I_RENTOP~determineRentalFee.
     METHODS validateRating FOR VALIDATE ON SAVE
       IMPORTING keys FOR ZGR5_I_RENTOP~validateRating.
     METHODS validateStatus FOR VALIDATE ON SAVE
       IMPORTING keys FOR ZGR5_I_RENTOP~validateStatus.
-    METHODS determineRentalStats FOR DETERMINE ON SAVE
-      IMPORTING keys FOR ZGR5_I_RENTOP~determineRentalStats.
+    METHODS determineRentalOperationStatus FOR DETERMINE ON SAVE
+      IMPORTING keys FOR ZGR5_I_RENTOP~determineRentalOperationStatus.
     METHODS determineVidStatus FOR DETERMINE ON SAVE
       IMPORTING keys FOR ZGR5_I_RENTOP~determineVidStatus.
     METHODS validateUUID FOR VALIDATE ON SAVE
       IMPORTING keys FOR ZGR5_I_RENTOP~validateUUID.
-    METHODS validateStartDateNull FOR VALIDATE ON SAVE
-      IMPORTING keys FOR ZGR5_I_RENTOP~validateStartDateNull.
     METHODS validateEndDateNull FOR VALIDATE ON SAVE
       IMPORTING keys FOR ZGR5_I_RENTOP~validateEndDateNull.
+
 
 
 ENDCLASS.
@@ -92,6 +93,7 @@ CLASS lhc_zgr5_i_rentop IMPLEMENTATION.
 
   ENDMETHOD.
 
+"Checks if endDate is before startDate
   METHOD validateEndDate.
   "Read the data
   READ entity in local mode ZGR5_I_RENTOP
@@ -109,22 +111,22 @@ CLASS lhc_zgr5_i_rentop IMPLEMENTATION.
     endloop.
   ENDMETHOD.
 
-  METHOD validateRentalFee.
-  "Read the data
-  READ entity in local mode ZGR5_I_RENTOP
-    fields ( RentalFee )
-    with CORRESPONDING #( keys )
-    RESULT DATA(rentops).
-    "Sequential processing of the data
-    loop at rentops into data(rentop).
-        if rentop-RentalFee <= 0.
-            DATA(message) = NEW zcm_gr5_videogame(
-                            severity = if_abap_behv_message=>severity-error
-                            textid   = zcm_gr5_videogame=>invalid_rental_fee ).
-            APPEND message TO reported-%other.
-        endif.
-    ENDLOOP.
-  ENDMETHOD.
+*  METHOD validateRentalFee.
+*  "Read the data
+*  READ entity in local mode ZGR5_I_RENTOP
+*    fields ( RentalFee )
+*    with CORRESPONDING #( keys )
+*    RESULT DATA(rentops).
+*    "Sequential processing of the data
+*    loop at rentops into data(rentop).
+*        if rentop-RentalFee <= 0.
+*            DATA(message) = NEW zcm_gr5_videogame(
+*                            severity = if_abap_behv_message=>severity-error
+*                            textid   = zcm_gr5_videogame=>invalid_rental_fee ).
+*            APPEND message TO reported-%other.
+*        endif.
+*    ENDLOOP.
+*  ENDMETHOD.
 
   METHOD determineRentalId.
   "Read the data
@@ -158,17 +160,25 @@ CLASS lhc_zgr5_i_rentop IMPLEMENTATION.
 
     "Sequential processing of the data
     LOOP AT rentops INTO DATA(rentop).
-
-      rentop-RentalFee = rentop-RentalReturnDate - rentop-RentalStartDate + 1.
+    IF rentop-RentalReturnDate IS INITIAL.
+            DATA(message) = NEW zcm_gr5_videogame(
+                            severity = if_abap_behv_message=>severity-error
+                            textid   = zcm_gr5_videogame=>invalid_or_missing_rent_end
+                             ).
+            APPEND message TO reported-%other.
+        ELSE.
+      rentop-RentalFee = ( rentop-RentalReturnDate - sy-datlo ) * 50 / 100 + 1.
       rentop-CukyField = 'EUR'.
 
       MODIFY ENTITY IN LOCAL MODE zgr5_i_rentop
         UPDATE FIELDS ( RentalFee CukyField )
         WITH VALUE #( ( %tky = rentop-%tky RentalFee = rentop-RentalFee CukyField = rentop-CukyField ) ).
-
+        ENDIF.
     ENDLOOP.
   ENDMETHOD.
 
+
+"Check if Rating between 0 and 10
   METHOD validateRating.
     "Read the data
     Read ENTITY IN LOCAL MODE ZGR5_I_RENTOP
@@ -190,6 +200,7 @@ CLASS lhc_zgr5_i_rentop IMPLEMENTATION.
     ENDLOOP.
   ENDMETHOD.
 
+"Validate, if the Videogame is available while creating a new rental operation
   METHOD validateStatus.
     "Read the data
     READ ENTITY IN LOCAL MODE zgr5_i_rentop
@@ -214,7 +225,8 @@ CLASS lhc_zgr5_i_rentop IMPLEMENTATION.
     ENDLOOP.
   ENDMETHOD.
 
-  METHOD determineRentalStats.
+
+  METHOD determineRentalOperationStatus.
   "Read data
 
   READ ENTITY IN LOCAL MODE zgr5_i_rentop
@@ -270,26 +282,8 @@ CLASS lhc_zgr5_i_rentop IMPLEMENTATION.
 
     ENDLOOP.
     ENDMETHOD.
-  METHOD validateStartDateNull.
-  "Read the data
-  Read ENTITY IN LOCAL MODE zgr5_i_rentop
-        Fields ( RentalStartDate )
-        WITH CORRESPONDING #( keys )
-        RESULT DATA(rentops).
 
-    "Sequential processing of the data
-    LOOP AT rentops INTO DATA(rentop).
-        if rentop-RentalStartDate IS INITIAL.
-            DATA(message) = NEW zcm_gr5_videogame(
-                            severity = if_abap_behv_message=>severity-error
-                            textid   = zcm_gr5_videogame=>invalid_or_missing_rent_start
-                             ).
-            APPEND message TO reported-%other.
-        endif.
-
-    ENDLOOP.
-  ENDMETHOD.
-
+"Checks if EndDate is null
   METHOD validateEndDateNull.
   "Read the data
   Read ENTITY IN LOCAL MODE zgr5_i_rentop
@@ -306,6 +300,24 @@ CLASS lhc_zgr5_i_rentop IMPLEMENTATION.
                              ).
             APPEND message TO reported-%other.
         endif.
+
+    ENDLOOP.
+  ENDMETHOD.
+
+"Startdate automatically to today
+  METHOD determineRentalStartDate.
+  "Read data
+  READ ENTITY IN LOCAL MODE zgr5_i_rentop
+    FIELDS ( RentalId )
+    WITH CORRESPONDING #( keys )
+    RESULT DATA(rentops).
+
+    LOOP AT rentops INTO DATA(rentop).
+        rentop-RentalStartDate = sy-datlo.
+        MODIFY ENTITY IN LOCAL MODE zgr5_i_rentop
+            UPDATE FIELDS ( RentalStartDate )
+            WITH VALUE #( ( %tky = rentop-%tky RentalStartDate = rentop-RentalStartDate ) ).
+
 
     ENDLOOP.
   ENDMETHOD.
@@ -329,6 +341,7 @@ CLASS lhc_ZGR5_I_VIDGAME DEFINITION INHERITING FROM cl_abap_behavior_handler.
       IMPORTING keys FOR zgr5_i_vidgame~validatesystemtitle.
     METHODS validaterentalstatus FOR VALIDATE ON SAVE
       IMPORTING keys FOR zgr5_i_vidgame~validaterentalstatus.
+
 
 
 ENDCLASS.
@@ -411,7 +424,7 @@ CLASS lhc_ZGR5_I_VIDGAME IMPLEMENTATION.
 
     "Sequential processing of the data
     LOOP AT vidgames INTO DATA(vidgame).
-        if vidgame-VideogameReleaseYear IS INITIAL.
+        if vidgame-VideogameReleaseYear IS INITIAL OR vidgame-VideogameReleaseYear CA 'ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜß' OR vidgame-VideogameReleaseYear < 1939.
             DATA(message) = NEW zcm_gr5_videogame(
                             severity = if_abap_behv_message=>severity-error
                             textid   = zcm_gr5_videogame=>invalid_or_missing_rel_year
@@ -441,7 +454,7 @@ CLASS lhc_ZGR5_I_VIDGAME IMPLEMENTATION.
 
     ENDLOOP.
   ENDMETHOD.
-
+"Check by creating a new vidgame if it is null
   METHOD validateRentalStatus.
   "Read the data
   Read ENTITY IN LOCAL MODE zgr5_i_vidgame
@@ -452,6 +465,7 @@ CLASS lhc_ZGR5_I_VIDGAME IMPLEMENTATION.
     "Sequential processing of the data
     LOOP AT vidgames INTO DATA(vidgame).
         if vidgame-RentalStatus IS INITIAL.
+
             DATA(message) = NEW zcm_gr5_videogame(
                             severity = if_abap_behv_message=>severity-error
                             textid   = zcm_gr5_videogame=>invalid_or_missing_rent_status
@@ -461,5 +475,7 @@ CLASS lhc_ZGR5_I_VIDGAME IMPLEMENTATION.
 
     ENDLOOP.
   ENDMETHOD.
+
+
 
 ENDCLASS.

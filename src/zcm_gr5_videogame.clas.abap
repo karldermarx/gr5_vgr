@@ -174,6 +174,16 @@ CLASS zcm_gr5_videogame DEFINITION
         attr4 TYPE scx_attrname VALUE '',
       END OF invalid_or_missing_rent_end.
 
+      CONSTANTS:
+      BEGIN OF vidgame_is_borrowed,
+        msgid TYPE symsgid VALUE 'ZGR5_VIDEOGAME',
+        msgno TYPE symsgno VALUE '017',
+        attr1 TYPE scx_attrname VALUE '',
+        attr2 TYPE scx_attrname VALUE '',
+        attr3 TYPE scx_attrname VALUE '',
+        attr4 TYPE scx_attrname VALUE '',
+      END OF vidgame_is_borrowed.
+
     "Define Attributs
     DATA user TYPE ty_user.
     DATA rentop_id TYPE zgr5_vgr_rental_id.
