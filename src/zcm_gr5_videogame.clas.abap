@@ -22,7 +22,7 @@ CLASS zcm_gr5_videogame DEFINITION
         attr2 TYPE scx_attrname VALUE '',
         attr3 TYPE scx_attrname VALUE '',
         attr4 TYPE scx_attrname VALUE '',
-      END OF BUTTON_PRESSED.
+      END OF button_pressed.
 
     CONSTANTS:
       BEGIN OF rentop_already_cancelled,
@@ -54,7 +54,7 @@ CLASS zcm_gr5_videogame DEFINITION
         attr4 TYPE scx_attrname VALUE '',
       END OF invalid_end_date.
 
-     CONSTANTS:
+    CONSTANTS:
       BEGIN OF invalid_rental_fee,
         msgid TYPE symsgid VALUE 'ZGR5_VIDEOGAME',
         msgno TYPE symsgno VALUE '005',
@@ -64,7 +64,7 @@ CLASS zcm_gr5_videogame DEFINITION
         attr4 TYPE scx_attrname VALUE '',
       END OF invalid_rental_fee.
 
-      CONSTANTS:
+    CONSTANTS:
       BEGIN OF videogame_already_returned,
         msgid TYPE symsgid VALUE 'ZGR5_VIDEOGAME',
         msgno TYPE symsgno VALUE '006',
@@ -84,7 +84,7 @@ CLASS zcm_gr5_videogame DEFINITION
         attr4 TYPE scx_attrname VALUE '',
       END OF invalid_rental_rating.
 
-     CONSTANTS:
+    CONSTANTS:
       BEGIN OF videogame_not_available,
         msgid TYPE symsgid VALUE 'ZGR5_VIDEOGAME',
         msgno TYPE symsgno VALUE '008',
@@ -94,7 +94,7 @@ CLASS zcm_gr5_videogame DEFINITION
         attr4 TYPE scx_attrname VALUE '',
       END OF videogame_not_available.
 
-     CONSTANTS:
+    CONSTANTS:
       BEGIN OF invalid_or_missing_uuid,
         msgid TYPE symsgid VALUE 'ZGR5_VIDEOGAME',
         msgno TYPE symsgno VALUE '009',
@@ -104,7 +104,7 @@ CLASS zcm_gr5_videogame DEFINITION
         attr4 TYPE scx_attrname VALUE '',
       END OF invalid_or_missing_uuid.
 
-     CONSTANTS:
+    CONSTANTS:
       BEGIN OF invalid_or_missing_game_title,
         msgid TYPE symsgid VALUE 'ZGR5_VIDEOGAME',
         msgno TYPE symsgno VALUE '010',
@@ -114,7 +114,7 @@ CLASS zcm_gr5_videogame DEFINITION
         attr4 TYPE scx_attrname VALUE '',
       END OF invalid_or_missing_game_title.
 
-      CONSTANTS:
+    CONSTANTS:
       BEGIN OF invalid_or_missing_game_genre,
         msgid TYPE symsgid VALUE 'ZGR5_VIDEOGAME',
         msgno TYPE symsgno VALUE '011',
@@ -124,7 +124,7 @@ CLASS zcm_gr5_videogame DEFINITION
         attr4 TYPE scx_attrname VALUE '',
       END OF invalid_or_missing_game_genre.
 
-      CONSTANTS:
+    CONSTANTS:
       BEGIN OF invalid_or_missing_rel_year,
         msgid TYPE symsgid VALUE 'ZGR5_VIDEOGAME',
         msgno TYPE symsgno VALUE '012',
@@ -134,7 +134,7 @@ CLASS zcm_gr5_videogame DEFINITION
         attr4 TYPE scx_attrname VALUE '',
       END OF invalid_or_missing_rel_year.
 
-      CONSTANTS:
+    CONSTANTS:
       BEGIN OF invalid_or_missing_sys_title,
         msgid TYPE symsgid VALUE 'ZGR5_VIDEOGAME',
         msgno TYPE symsgno VALUE '013',
@@ -144,7 +144,7 @@ CLASS zcm_gr5_videogame DEFINITION
         attr4 TYPE scx_attrname VALUE '',
       END OF invalid_or_missing_sys_title.
 
-      CONSTANTS:
+    CONSTANTS:
       BEGIN OF invalid_or_missing_rent_status,
         msgid TYPE symsgid VALUE 'ZGR5_VIDEOGAME',
         msgno TYPE symsgno VALUE '014',
@@ -154,7 +154,7 @@ CLASS zcm_gr5_videogame DEFINITION
         attr4 TYPE scx_attrname VALUE '',
       END OF invalid_or_missing_rent_status.
 
-      CONSTANTS:
+    CONSTANTS:
       BEGIN OF invalid_or_missing_rent_start,
         msgid TYPE symsgid VALUE 'ZGR5_VIDEOGAME',
         msgno TYPE symsgno VALUE '015',
@@ -164,7 +164,7 @@ CLASS zcm_gr5_videogame DEFINITION
         attr4 TYPE scx_attrname VALUE '',
       END OF invalid_or_missing_rent_start.
 
-      CONSTANTS:
+    CONSTANTS:
       BEGIN OF invalid_or_missing_rent_end,
         msgid TYPE symsgid VALUE 'ZGR5_VIDEOGAME',
         msgno TYPE symsgno VALUE '016',
@@ -174,7 +174,7 @@ CLASS zcm_gr5_videogame DEFINITION
         attr4 TYPE scx_attrname VALUE '',
       END OF invalid_or_missing_rent_end.
 
-      CONSTANTS:
+    CONSTANTS:
       BEGIN OF vidgame_is_borrowed,
         msgid TYPE symsgid VALUE 'ZGR5_VIDEOGAME',
         msgno TYPE symsgno VALUE '017',
@@ -195,22 +195,15 @@ CLASS zcm_gr5_videogame DEFINITION
     "Constructor
     METHODS constructor
       IMPORTING
-        severity    TYPE if_abap_behv_message=>t_severity DEFAULT if_abap_behv_message=>severity-error
-        textid      LIKE if_t100_message=>t100key DEFAULT if_t100_message=>default_textid
-        previous    LIKE previous OPTIONAL
-        user TYPE ty_user OPTIONAL
-        rentop_id TYPE zgr5_vgr_rental_id OPTIONAL
-        rental_fee TYPE zgr5_vgr_rental_fee OPTIONAL
-        rental_rating TYPE zgr5_vgr_rating OPTIONAL
-        rental_availability TYPE zgr5_vgr_rental_status Optional.
+        severity            TYPE if_abap_behv_message=>t_severity DEFAULT if_abap_behv_message=>severity-error
+        textid              LIKE if_t100_message=>t100key DEFAULT if_t100_message=>default_textid
+        previous            LIKE previous OPTIONAL
+        user                TYPE ty_user OPTIONAL
+        rentop_id           TYPE zgr5_vgr_rental_id OPTIONAL
+        rental_fee          TYPE zgr5_vgr_rental_fee OPTIONAL
+        rental_rating       TYPE zgr5_vgr_rating OPTIONAL
+        rental_availability TYPE zgr5_vgr_rental_status OPTIONAL.
 
-     " Oben stehendes wäre in Java folgendes:
-     " public Videogame(Severity severity, String textId, Object previous, User user) {
-     " super(previous)
-     " this.severity = severity;
-     " this.textId = textId;
-     " this.user = user;
-     "}
 
   PROTECTED SECTION.
 
@@ -220,7 +213,7 @@ ENDCLASS.
 
 
 
-CLASS ZCM_GR5_VIDEOGAME IMPLEMENTATION.
+CLASS zcm_gr5_videogame IMPLEMENTATION.
 
 
   METHOD constructor ##ADT_SUPPRESS_GENERATION.

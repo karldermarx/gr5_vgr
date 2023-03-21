@@ -24,11 +24,11 @@ annotate view ZGR5_C_RENTOP with
   /*@UI.lineItem: [{position: 10}]
   @UI.identification: [{position:10 }]
   RentalOperationId;*/
-  
+
   @UI.lineItem: [{position: 15}]
   @UI.identification: [{position:15 }]
   RentalId;
-  
+
   @UI.lineItem: [{position: 20, label: 'Videogame Title'}]
   @UI.identification: [{position:20 }]
   VideogameTitle;
@@ -36,7 +36,7 @@ annotate view ZGR5_C_RENTOP with
   @UI.lineItem: [{position: 30, label: 'Customer UUID'}]
   @UI.identification: [{position:30 }]
   CustomerUuid;
-  
+
   @UI.lineItem: [{position: 35, label: 'Customer Name' }]
   @UI.identification: [{position: 35 }]
   CustomerName;
@@ -59,11 +59,11 @@ annotate view ZGR5_C_RENTOP with
   @UI.lineItem: [{position: 70 }]
   @UI.identification: [{position:70 }]
   RentalFee;
-  
+
   @UI.lineItem: [{position: 80 }]
   @UI.identification: [{position:80 }]
   RentalRating;
-  
+
 
   //@UI.hidden : true
   //CukyField;
